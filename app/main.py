@@ -1,14 +1,19 @@
 from fastapi import FastAPI,Depends,HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from dotenv import load_dotenv
+import os
 from app.schemas.customer import Customer
 
+load_dotenv()
 security = HTTPBearer()
 app_rm = FastAPI()
+
+swagger_api_token = os.getenv("SWAGGER_API_TOKEN")
 
 def verify_token(
     credentials: HTTPAuthorizationCredentials = Depends(security)
 ):
-    if credentials.credentials != "lisa":
+    if credentials.credentials != swagger_api_token:
         raise HTTPException(status_code=401, detail="Invalid token")
 
     return credentials.credentials

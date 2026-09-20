@@ -2,6 +2,7 @@ from fastapi import FastAPI,Depends,HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from app.config import swagger_api_token
 from app.schemas.customer import Customer
+from app.services.customer_service import get_customer
 
 security = HTTPBearer()
 app_rm = FastAPI()
@@ -23,9 +24,5 @@ def root():
             response_model=Customer,
             dependencies=[Depends(verify_token)]
             )
-def get_customer(customer_id: str):
-    return Customer(
-        customer_id=customer_id,
-        name="Blah blah",
-        industry="bleh bleh",
-        )
+def customer(customer_id: str):
+    return get_customer(customer_id)

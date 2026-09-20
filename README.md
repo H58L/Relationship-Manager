@@ -45,3 +45,14 @@ Every important recommendation gets its evidence.
 
 Step 7 — Evaluation
 We'll create questions where we know the expected answer and test whether the agent actually reaches it.
+
+<br><hr>
+<h1>Dependencies</h1>
+<li>FastApi: FastAPI = framework for building the API</li>
+<li>Uvicorn: Uvicorn = server that runs the API</li>
+
+<hr>
+<h1>Running the app</h1>
+<li>Create and activate virtual environment:  python -m venv venv , venv\Scripts\activate</li>
+<li>Install dependencies: pip install -r requirements.txt  </li>
+<li>Run: uvicorn app.main:app_rm --reload </li>

@@ -1,14 +1,11 @@
 from fastapi import FastAPI,Depends,HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from dotenv import load_dotenv
-import os
+from app.config import swagger_api_token
 from app.schemas.customer import Customer
 
-load_dotenv()
 security = HTTPBearer()
 app_rm = FastAPI()
 
-swagger_api_token = os.getenv("SWAGGER_API_TOKEN")
 
 def verify_token(
     credentials: HTTPAuthorizationCredentials = Depends(security)
